@@ -1,45 +1,62 @@
 import React from "react";
 import { Link } from "react-router";
 import Logo from "../../components/logo/Logo";
-import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 
-const Login = () => {
-  const { signInWithGoogle, signInUser } = useAuth();
+const Register = () => {
+  const { user, createUser, updateUserProfile } = useAuth();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const handleLogin = async (data) => {
-    const { email, password } = data;
+  const handleRegister = async (data) => {
+    const { name, image, email, password } = data;
+    const imageFile = image[0];
+    // console.log(data);
 
- try {
-   await signInUser(email, password);
-   toast.success('login successful');
- } 
- catch (err) {
-   console.log(err);
-   toast.error(err?.message);
- }
+    try {
+      const result =await createUser(email, password);
+
+
+      console.log(result);
+
+      await updateUserProfile(name);
+      toast.success('Account Register Successful' );
+    } 
+    
+    catch (err) {
+      console.log(err);
+      toast.error(err?.message);
+    }
   };
 
   return (
     <div className="my-10 mono">
       <div className="flex text-4xl mono justify-center items-center text-center">
-        <h2 className="font-extrabold ">
-          Welcome to <Logo></Logo>{" "}
+        <h2 className="font-extrabold  ">
+          Be a Member of <Logo></Logo>{" "}
         </h2>
       </div>
 
       <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl mx-auto mt-10">
         <div className="card-body">
           <h2>Hey Gamer,</h2>
-          <h3>Login Now for Next Rock</h3>
-          <form onSubmit={handleSubmit(handleLogin)}>
+          <h3>Register Now for Next Rock</h3>
+
+          <form onSubmit={handleSubmit(handleRegister)}>
             <fieldset className="fieldset">
+              <label className="label">Name</label>
+              <input
+                type="text"
+                {...register("name")}
+                className="input"
+                placeholder="Your Name"
+              />
+
               <label className="label">Email</label>
               <input
                 type="email"
@@ -47,6 +64,16 @@ const Login = () => {
                 className="input"
                 placeholder="Email"
               />
+
+              <fieldset className="fieldset">
+                <label className="label">Pick a profile image</label>
+                <input
+                  type="file"
+                  {...register("image")}
+                  className="file-input"
+                />
+              </fieldset>
+
               <label className="label">Password</label>
               <input
                 type="password"
@@ -54,10 +81,8 @@ const Login = () => {
                 className="input"
                 placeholder="Password"
               />
-              <div>
-                <a className="link link-hover">Forgot password?</a>
-              </div>
-              <button className="btn btn-neutral mt-4">Login</button>
+
+              <button className="btn btn-neutral mt-4">Register</button>
               <button className="btn bg-white text-black border-[#e5e5e5]">
                 <svg
                   aria-label="Google logo"
@@ -89,9 +114,9 @@ const Login = () => {
                 Login with Google
               </button>
               <p>
-                New at Fakegamers{" "}
-                <Link to={"/register"} className="text-red-600 font-semibold">
-                  Register
+                Have an account{" "}
+                <Link to={"/login"} className="text-red-600 font-semibold">
+                  Login
                 </Link>
               </p>
             </fieldset>
@@ -102,4 +127,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

@@ -2,8 +2,13 @@ import React from "react";
 import { Link } from "react-router";
 import Login from "../pages/Login/Login";
 import Button from "./Buttons/LoginButton";
+import Logo from "./logo/Logo";
+import useAuth from "../hooks/useAuth";
+import { h2 } from "framer-motion/client";
+import { Atom } from "react-loading-indicators";
 
 const Navbar = () => {
+  const {user,setUser,loading}=useAuth();
   const links = (
     <>
       <Link to={"/games"}>Games</Link>
@@ -42,18 +47,22 @@ const Navbar = () => {
             </ul>
           </div>
           <Link to={"/"} className="btn btn-ghost fancy text-2xl">
-            <h2 className="text-4xl font-extrabold fancy text-black">
-              FAKE<span className="text-red-500">GAMERS</span>
-            </h2>
+            <Logo></Logo>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="flex gap-3">{links}</ul>
         </div>
         <div className="navbar-end">
-          <Link to={"/login"} className="">
-            <Button txt="Login"></Button>
-          </Link>
+          {loading ? (
+            <Atom color="#f10808" size="small" text="" textColor="#NaNNaNNaN" />
+          ) : user ? (
+            <h1 className="text-black">{user.displayName}</h1>
+          ) : (
+            <Link to={"/login"} className="">
+              <Button txt="Login"></Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
