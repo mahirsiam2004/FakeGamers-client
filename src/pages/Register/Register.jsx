@@ -4,6 +4,8 @@ import Logo from "../../components/logo/Logo";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { imageUpload } from "../../utils/upload";
 
 const Register = () => {
   const { user, createUser, updateUserProfile } = useAuth();
@@ -16,11 +18,23 @@ const Register = () => {
   const handleRegister = async (data) => {
     const { name, image, email, password } = data;
     const imageFile = image[0];
+    // const formData=new FormData();
+    // formData.append('image',imageFile)
+
     // console.log(data);
 
     try {
-      const result =await createUser(email, password);
 
+    // const {data} = await axios.post(
+    //   `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_API_KEY}`,
+    //   formData
+    // );
+    const imageURL=await imageUpload(imageFile)
+
+
+      const result =await createUser(email, password);
+      
+      await updateUserProfile(name,imageURL)
 
       console.log(result);
 
@@ -83,7 +97,7 @@ const Register = () => {
               />
 
               <button className="btn btn-neutral mt-4">Register</button>
-              <button className="btn bg-white text-black border-[#e5e5e5]">
+              {/* <button className="btn bg-white text-black border-[#e5e5e5]">
                 <svg
                   aria-label="Google logo"
                   width="16"
@@ -112,7 +126,7 @@ const Register = () => {
                   </g>
                 </svg>
                 Login with Google
-              </button>
+              </button> */}
               <p>
                 Have an account{" "}
                 <Link to={"/login"} className="text-red-600 font-semibold">

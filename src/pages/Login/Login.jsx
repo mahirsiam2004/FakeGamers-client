@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 const Login = () => {
-  const { signInWithGoogle, signInUser } = useAuth();
+  const { signInWithGoogle, signInUser,logOut } = useAuth();
   const {
     register,
     handleSubmit,
@@ -25,6 +25,11 @@ const Login = () => {
    toast.error(err?.message);
  }
   };
+
+  const hanldeGoogleSignIn=async()=>{
+    await signInWithGoogle();
+    toast.success("Login Successful,Lets Rock")
+  }
 
   return (
     <div className="my-10 mono">
@@ -58,7 +63,7 @@ const Login = () => {
                 <a className="link link-hover">Forgot password?</a>
               </div>
               <button className="btn btn-neutral mt-4">Login</button>
-              <button className="btn bg-white text-black border-[#e5e5e5]">
+              <button onClick={hanldeGoogleSignIn} className="btn bg-white text-black border-[#e5e5e5]">
                 <svg
                   aria-label="Google logo"
                   width="16"
