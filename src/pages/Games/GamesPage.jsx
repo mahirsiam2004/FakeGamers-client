@@ -35,8 +35,8 @@ const GamesPage = () => {
   }
 
   return (
-    <div className="py-12 px-4">
-      <h1 className="text-red-500 font-semibold text-4xl mt-20 text-center">
+    <div className="py-12 px-4 mono">
+      <h1 className="text-red-500 font-semibold text-4xl mb-20 text-center">
         All Games
       </h1>
 

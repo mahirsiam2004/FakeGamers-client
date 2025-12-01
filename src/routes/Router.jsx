@@ -13,6 +13,7 @@ import MyGames from "../pages/Dashboard/MyGames/MyGames";
 import MyDownloads from "../pages/Dashboard/MyDownloads/MyDownloads";
 import UpdateGames from "../pages/Dashboard/UpdateGames/UpdateGames";
 import MyProfile from "../pages/Profile/MyProfile";
+import GameDetails from "../pages/GameDetails/GameDetails";
 
 export const Router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const Router = createBrowserRouter([
         {
           path:'/profile',
           Component:MyProfile
+        },
+        {
+          path:'/details/:id',
+          Component:GameDetails
         },
     ]
   },

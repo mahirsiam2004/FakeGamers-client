@@ -14,3 +14,11 @@
 }
 
 
+.purple-notification {
+  background-color: #7c3aed !important; 
+  color: #fff !important;
+  border-radius: 8px !important;
+  padding: 12px 16px !important;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}

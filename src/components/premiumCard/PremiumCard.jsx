@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router";
 
 const PremiumCard = ({ game }) => {
-  const isUltraPremium = game.price > 100;
+  const isUltraPremium = game.price >=100;
 
   return (
     <div className="relative w-72 group mono">
@@ -55,9 +56,9 @@ const PremiumCard = ({ game }) => {
           </div>
 
           {/* BUY BUTTON */}
-          <button className="w-full bg-black hover:bg-red-600 text-white font-black text-lg py-3 rounded-xl uppercase tracking-widest transform hover:scale-105 transition duration-300 shadow border-2 border-red-600">
+          <Link to={`/details/${game._id}`} className="btn  w-full bg-black hover:bg-red-600 text-white font-black text-lg py-3 rounded-xl uppercase tracking-widest transform hover:scale-105 transition duration-300 shadow border-2 border-red-600">
             Get Now
-          </button>
+          </Link>
         </div>
 
         {/* HOVER GLOW */}

@@ -45,7 +45,7 @@ const Footer = () => {
             </p>
             {/* Replaced cyan-400 with red-500 for copyright */}
             <p className="text-red-500 text-xs mt-6">
-              © 2025 NebulaPlay. All rights reserved.
+              © 2025 FAKEGAMERS. All rights reserved.
             </p>
           </motion.div>
 

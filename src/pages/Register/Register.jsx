@@ -6,6 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { imageUpload } from "../../utils/upload";
+import { Store } from "react-notifications-component";
 
 const Register = () => {
   const { user, createUser, updateUserProfile } = useAuth();
@@ -38,8 +39,28 @@ const Register = () => {
 
       console.log(result);
 
-      await updateUserProfile(name);
+
       toast.success('Account Register Successful' );
+
+
+
+Store.addNotification({
+  title: "You unlocked Dashboard!",
+  message: "Welcome gamer!",
+  type: "info", 
+  container: "bottom-left", 
+  animationIn: ["animate__animated", "animate__fadeIn"],
+  animationOut: ["animate__animated", "animate__fadeOut"],
+  dismiss: {
+    duration: 5000,
+    onScreen: true,
+  },
+ 
+  className: "purple-notification",
+});
+
+
+
     } 
     
     catch (err) {

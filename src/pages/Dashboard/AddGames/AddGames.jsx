@@ -21,7 +21,7 @@ const {user}=useAuth();
     onSuccess: (data) => {
       console.log(data);
 
-      toast.success("Plant Added successfully");
+      toast.success("Game Added successfully");
       // navigate to my inventory page
       mutationReset();
       // Query key invalidate
@@ -63,6 +63,7 @@ const {user}=useAuth();
               name: user?.displayName,
               email: user?.email,
             },
+            createdAt: new Date().toISOString(),
           };
 
  await mutateAsync(gameData);
