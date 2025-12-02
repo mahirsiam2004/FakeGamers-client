@@ -55,7 +55,7 @@ const MyGames = () => {
                 className="bg-white rounded-xl shadow-md overflow-hidden relative hover:shadow-xl transition-shadow duration-300"
               >
                 {/* Premium / Free badge */}
-                {game.price > 50 && (
+                {game.price > 0 && (
                   <span className="absolute top-3 right-3 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full uppercase shadow">
                     Premium
                   </span>

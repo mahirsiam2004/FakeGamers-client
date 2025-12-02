@@ -72,6 +72,15 @@ const {user}=useAuth();
 
   return (
     <div className="bg-gray-50 py-8 px-4 sm:py-12 mono">
+      {isPending && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center z-50">
+          <div className="w-16 h-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-white text-2xl font-bold mt-4 tracking-wider">
+            Uploading...
+          </p>
+        </div>
+      )}
+
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-4xl sm:text-5xl font-black text-black">

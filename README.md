@@ -1,16 +1,66 @@
-# React + Vite
+FAKEGAMERS – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Version: 0.1.0
+Status: Active Development
+License: Proprietary
 
-Currently, two official plugins are available:
+📝 Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This repository contains the frontend application for FAKEGAMERS, a modern gaming marketplace and community platform.
+Built using React 19, Vite, and Tailwind CSS, the application delivers:
 
-## React Compiler
+✔ Ultra-fast performance
+✔ Responsive & modern UI
+✔ Smooth animations
+✔ Firebase-authenticated user flow
+✔ Real-time sync with React Query
+✔ A clean and scalable architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The frontend communicates with the backend through secure REST APIs and is optimized for performance across all devices.
 
-## Expanding the ESLint configuration
+Technology Stack
+Category Technology Version
+Framework React 19.2.0
+Build Tool Vite 5.x
+Styling Tailwind CSS 4.1.x
+State Management TanStack Query (React Query) 5.91.x
+Routing React Router DOM 7.9.x
+Forms React Hook Form 7.x
+Animations Framer Motion 12.x
+Backend Integration Firebase SDK 12.x
+HTTP Client Axios 1.13.x
+Notifications react-hot-toast 2.x
+UI Components react-icons / react-fast-marquee / react-carousel Latest
+📦 Key Features
+🎮 Game Management
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Add, edit, and manage uploaded games
+
+My Games dashboard
+
+Game previews and details
+
+👤 User System
+
+Firebase authentication
+
+Protected routes
+
+Personalized dashboard
+
+📊 Modern UI & Real-Time Features
+
+React Query data caching
+
+Dashboard analytics
+
+Smooth Framer Motion animations
+
+📬 Developer Contact
+
+👨‍💻 Developer: Mahir Siam Muhin
+📧 Email: mahirsiam2004@gmail.com
+
+📍 Project: FAKEGAMERS Frontend (2025)
+
+© 2025 FAKEGAMERS. All Rights Reserved.
