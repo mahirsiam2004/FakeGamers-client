@@ -207,3 +207,4 @@ const handlePayment=async ()=>{
 };
 
 export default GameDetails;
+// not fixed
