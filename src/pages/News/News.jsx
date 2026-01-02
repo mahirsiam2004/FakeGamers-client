@@ -62,10 +62,10 @@ const newsArticles = [
 
 const News = () => {
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-gray-900">
       {/* Hero */}
-      <section className="relative bg-gradient-to-b from-red-950 via-black to-black py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-grid opacity-5"></div>
+      <section className="relative bg-gradient-to-b from-red-50 via-white to-white py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-grid opacity-50"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -77,16 +77,16 @@ const News = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.6, type: "spring" }}
-            className="inline-flex items-center gap-3 text-red-500 text-sm font-bold uppercase tracking-wider mb-6"
+            className="inline-flex items-center gap-3 text-red-600 text-sm font-bold uppercase tracking-wider mb-6"
           >
             <FaFire className="text-2xl" />
             Latest News & Updates
           </motion.div>
 
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-red-500">
+          <h1 className="text-6xl md:text-8xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-700 to-red-600">
             NEWS HUB
           </h1>
-          <p className="mt-6 text-xl text-gray-400 max-w-2xl mx-auto">
+          <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
             Stay up to date with patches, events, esports, and everything
             happening in the game.
           </p>
@@ -103,7 +103,7 @@ const News = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group relative bg-gradient-to-b from-gray-900 to-black rounded-2xl overflow-hidden border border-gray-800 hover:border-red-700 transition-all duration-500 cursor-pointer shadow-2xl"
+              className="group relative bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-red-600 transition-all duration-500 cursor-pointer shadow-lg hover:shadow-2xl"
             >
               {/* Featured Badge */}
               {article.featured && (
@@ -119,7 +119,7 @@ const News = () => {
                   alt={article.title}
                   className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60"></div>
               </div>
 
               {/* Content */}
@@ -137,11 +137,11 @@ const News = () => {
                   </span>
                 </div>
 
-                <h2 className="text-2xl font-bold text-white group-hover:text-red-500 transition">
+                <h2 className="text-2xl font-bold text-gray-900 group-hover:text-red-600 transition">
                   {article.title}
                 </h2>
 
-                <p className="mt-3 text-gray-400 line-clamp-3">
+                <p className="mt-3 text-gray-600 line-clamp-3">
                   {article.excerpt}
                 </p>
 
@@ -151,7 +151,7 @@ const News = () => {
                   </span>
                   <motion.span
                     whileHover={{ x: 5 }}
-                    className="text-red-500 font-semibold flex items-center gap-2"
+                    className="text-red-600 font-semibold flex items-center gap-2"
                   >
                     Read More →
                   </motion.span>
@@ -177,10 +177,10 @@ const News = () => {
       <style jsx>{`
         .bg-grid {
           background-image: linear-gradient(
-              rgba(255, 0, 0, 0.05) 1px,
+              rgba(0, 0, 0, 0.05) 1px,
               transparent 1px
             ),
-            linear-gradient(90deg, rgba(255, 0, 0, 0.05) 1px, transparent 1px);
+            linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
           background-size: 50px 50px;
         }
       `}</style>
