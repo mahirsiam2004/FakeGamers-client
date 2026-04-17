@@ -14,6 +14,10 @@ import MyDownloads from "../pages/Dashboard/MyDownloads/MyDownloads";
 import UpdateGames from "../pages/Dashboard/UpdateGames/UpdateGames";
 import MyProfile from "../pages/Profile/MyProfile";
 import GameDetails from "../pages/GameDetails/GameDetails";
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import ManageNews from "../pages/Dashboard/ManageNews/ManageNews";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AllGames from "../pages/Dashboard/AllGames/AllGames";
 
 export const Router = createBrowserRouter([
   {
@@ -46,23 +50,37 @@ export const Router = createBrowserRouter([
         },
         {
           path:'/dashboard',
-          Component:Dashboard
-        },
-        {
-          path:'/addGames',
-          Component:AddGames
-        },
-        {
-          path:'/myGames',
-          Component:MyGames
-        },
-        {
-          path:'/myDownloads',
-          Component:MyDownloads
-        },
-        {
-          path:'/updateGames',
-          Component:UpdateGames
+          Component:Dashboard,
+          children: [
+            {
+              path: 'addGames',
+              Component: AddGames
+            },
+            {
+              path: 'myGames',
+              Component: MyGames
+            },
+            {
+              path: 'myDownloads',
+              Component: MyDownloads
+            },
+            {
+              path: 'updateGames/:id',
+              Component: UpdateGames
+            },
+            {
+              path: 'manageNews',
+              Component: ManageNews
+            },
+            {
+              path: 'manageUsers',
+              Component: ManageUsers
+            },
+            {
+              path: 'allGames',
+              Component: AllGames
+            }
+          ]
         },
         {
           path:'/profile',
@@ -71,6 +89,10 @@ export const Router = createBrowserRouter([
         {
           path:'/details/:id',
           Component:GameDetails
+        },
+        {
+          path:'/payment/success',
+          Component:PaymentSuccess
         },
     ]
   },

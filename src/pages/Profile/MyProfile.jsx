@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-hot-toast";
+import { motion } from "framer-motion";
+import { FaUser, FaEdit, FaSave, FaTimes, FaGamepad, FaDownload, FaTrophy, FaCalendar } from "react-icons/fa";
 
 const MyProfile = () => {
   const { user, loading, updateUserProfile } = useAuth();
@@ -11,163 +13,185 @@ const MyProfile = () => {
   const handleUpdateProfile = async () => {
     try {
       let photoURL = user?.photoURL;
-
       if (newPhoto) {
-        photoURL = URL.createObjectURL(newPhoto); // Demo mode
+        photoURL = URL.createObjectURL(newPhoto);
         toast.success("Photo updated! (Demo)");
       }
-
       await updateUserProfile(newName, photoURL);
       toast.success("Profile updated!");
       setIsEditing(false);
-    } catch (err) {
+    } catch {
       toast.error("Update failed");
     }
   };
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen bg-gray-100">
-        <div className="w-16 h-16 border-8 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+      <div className="flex justify-center items-center h-screen bg-[#07071a]">
+        <div className="w-10 h-10 border-4 border-purple-600 border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
 
+  const stats = [
+    { label: "Games Played",  value: "1,337", icon: <FaGamepad />,  color: "text-purple-400" },
+    { label: "Games Uploaded", value: "42",   icon: <FaDownload />, color: "text-green-400" },
+    { label: "World Rank",    value: "#69",   icon: <FaTrophy />,   color: "text-yellow-400" },
+    { label: "Member Since",  value: "2025",  icon: <FaCalendar />, color: "text-blue-400" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br mono from-gray-100 via-white to-red-50 py-12 px-4">
-      <div className="max-w-4xl mx-auto space-y-12">
-        <div className="text-center space-y-2">
-          <h1 className="text-5xl md:text-6xl fancy font-black text-black">
-            MY <span className="text-red-600">PROFILE</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 font-bold">
-            Level 99 Gamer • Elite Member
-          </p>
-        </div>
+    <div className="min-h-screen bg-[#07071a] py-16 px-6">
+      {/* bg glow */}
+      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-purple-600/8 blur-[150px] rounded-full pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Left Card */}
-          <div className="lg:col-span-1 bg-white rounded-3xl shadow-2xl border-4 border-black p-6 text-center space-y-4">
-            <div className="relative inline-block">
-              <img
-                src={
-                  user?.photoURL ||
-                  "https://i.ibb.co/7p0dK9D/avatar-placeholder.png"
-                }
-                alt="Avatar"
-                className="w-40 h-40 rounded-full border-4 border-red-600 object-cover mx-auto"
-              />
-              <div className="absolute bottom-0 right-0 bg-red-600 text-white px-3 py-1 rounded-full font-bold text-xs">
-                ONLINE
-              </div>
-            </div>
-            <h2 className="text-2xl font-black">
-              {user?.displayName || "Pro Gamer"}
-            </h2>
-            <p className="text-gray-500 text-sm break-all">{user?.email}</p>
-
-            <div className="space-y-2 mt-4">
-              <div className="bg-red-600 text-white py-2 rounded-lg font-bold text-sm">
-                1,337 Games Played
-              </div>
-              <div className="bg-black text-white py-2 rounded-lg font-bold text-sm">
-                42 Games Uploaded
-              </div>
-              <div className="bg-gray-200 text-black py-2 rounded-lg font-bold text-sm">
-                Rank #69 Worldwide
-              </div>
-            </div>
+      <div className="max-w-5xl mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center gap-2 bg-purple-600/10 border border-purple-600/20 px-4 py-1.5 rounded-full text-purple-400 text-[11px] font-black uppercase tracking-widest mb-5">
+            <span className="w-1.5 h-1.5 bg-purple-400 rounded-full" />
+            Gamer Profile
           </div>
+          <h1 className="text-5xl font-black uppercase tracking-tighter text-white">
+            My <span className="text-purple-400">Profile</span>
+          </h1>
+          <p className="text-gray-500 mt-2">Level 99 Gamer • Elite Member</p>
+        </motion.div>
 
-          {/* Right Card */}
-          <div className="lg:col-span-2 bg-white rounded-3xl shadow-2xl border-4 border-black p-6 space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-3xl font-black">EDIT PROFILE</h2>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Avatar Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 }}
+            className="bg-[#0d0d2b] border border-purple-900/20 rounded-[28px] p-8 text-center"
+          >
+            <div className="relative inline-block mb-5">
+              <div className="absolute -inset-2 bg-purple-600/20 blur-xl rounded-full" />
+              <img
+                src={user?.photoURL || "https://i.ibb.co/7p0dK9D/avatar-placeholder.png"}
+                alt="Avatar"
+                className="w-32 h-32 rounded-full border-4 border-purple-600/40 object-cover relative z-10"
+              />
+              <div className="absolute bottom-1 right-1 bg-green-500 text-white px-2 py-0.5 rounded-full font-black text-[10px] uppercase z-20">
+                Online
+              </div>
+            </div>
+            <h2 className="text-xl font-black text-white mb-1">{user?.displayName || "Pro Gamer"}</h2>
+            <p className="text-gray-500 text-xs break-all mb-6">{user?.email}</p>
+
+            <div className="space-y-2">
+              {[
+                { label: "1,337 Games Played", bg: "bg-purple-600/20 border border-purple-600/30 text-purple-300" },
+                { label: "42 Games Uploaded",  bg: "bg-green-900/20 border border-green-800/30 text-green-400" },
+                { label: "Rank #69 Worldwide", bg: "bg-yellow-900/20 border border-yellow-800/30 text-yellow-400" },
+              ].map((item) => (
+                <div key={item.label} className={`${item.bg} py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest`}>
+                  {item.label}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Edit Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="lg:col-span-2 bg-[#0d0d2b] border border-purple-900/20 rounded-[28px] p-8"
+          >
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-2xl font-black uppercase tracking-tighter text-white">Edit Profile</h2>
               <button
                 onClick={() => setIsEditing(!isEditing)}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-xl font-bold text-sm uppercase tracking-wider"
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all ${
+                  isEditing
+                    ? "bg-red-900/20 border border-red-800/30 text-red-400 hover:bg-red-900/40"
+                    : "purple-btn text-white"
+                }`}
               >
-                {isEditing ? "Cancel" : "Edit"}
+                {isEditing ? <><FaTimes /> Cancel</> : <><FaEdit /> Edit</>}
               </button>
             </div>
 
             {isEditing ? (
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div>
-                  <label className="block font-bold text-black mb-1">
-                    Display Name
-                  </label>
+                  <label className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Display Name</label>
                   <input
                     type="text"
                     value={newName}
                     onChange={(e) => setNewName(e.target.value)}
-                    className="w-full px-4 py-2 border-2 border-black rounded-lg focus:border-red-600 outline-none"
+                    className="w-full bg-purple-900/10 border border-purple-800/30 focus:border-purple-600/50 rounded-xl px-4 py-3.5 text-sm text-white placeholder-gray-600 focus:outline-none transition-colors"
                     placeholder="xXProGamerXx"
                   />
                 </div>
                 <div>
-                  <label className="block font-bold text-black mb-1">
-                    Change Avatar
-                  </label>
+                  <label className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-2">Change Avatar</label>
                   <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => setNewPhoto(e.target.files[0])}
-                    className="w-full file:rounded-lg file:bg-red-600 file:text-white file:px-4 file:py-2 cursor-pointer"
+                    className="w-full bg-purple-900/10 border border-purple-800/30 rounded-xl px-4 py-3 text-sm text-gray-400 focus:outline-none file:mr-3 file:py-1 file:px-3 file:rounded-lg file:border-0 file:bg-purple-600/30 file:text-white file:text-xs file:font-bold file:cursor-pointer"
                   />
                 </div>
                 <button
                   onClick={handleUpdateProfile}
-                  className="w-full bg-black hover:bg-gray-900 text-white py-3 rounded-xl font-black text-lg uppercase tracking-widest"
+                  className="w-full purple-btn text-white py-4 rounded-xl font-black text-sm uppercase tracking-widest flex items-center justify-center gap-2"
                 >
-                  Save Changes
+                  <FaSave /> Save Changes
                 </button>
               </div>
             ) : (
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between py-1 border-b border-gray-300">
-                  <span className="font-bold">Member Since</span>
-                  <span className="text-red-600 font-bold">January 2025</span>
-                </div>
-                <div className="flex justify-between py-1 border-b border-gray-300">
-                  <span className="font-bold">Total Downloads</span>
-                  <span className="text-red-600 font-bold">89,421</span>
-                </div>
-                <div className="flex justify-between py-1 border-b border-gray-300">
-                  <span className="font-bold">Games Uploaded</span>
-                  <span className="text-red-600 font-bold">42</span>
-                </div>
-                <div className="flex justify-between py-1">
-                  <span className="font-bold">Status</span>
-                  <span className="bg-red-600 text-white px-3 py-1 rounded-full font-bold text-xs">
-                    VERIFIED CREATOR
-                  </span>
-                </div>
+              <div className="space-y-3">
+                {[
+                  ["Member Since", "January 2025"],
+                  ["Total Downloads", "89,421"],
+                  ["Games Uploaded", "42"],
+                  ["Status", "VERIFIED CREATOR"],
+                ].map(([k, v]) => (
+                  <div key={k} className="flex justify-between items-center py-3 border-b border-purple-900/20 last:border-0">
+                    <span className="text-gray-500 text-sm font-bold">{k}</span>
+                    {k === "Status" ? (
+                      <span className="bg-purple-600/20 border border-purple-600/30 text-purple-300 px-3 py-1 rounded-full font-black text-[10px] uppercase tracking-widest">
+                        {v}
+                      </span>
+                    ) : (
+                      <span className="text-purple-400 font-black text-sm">{v}</span>
+                    )}
+                  </div>
+                ))}
               </div>
             )}
 
-            <div className="grid grid-cols-2 gap-4">
-              <button className="bg-black text-white py-3 rounded-xl font-bold hover:bg-gray-900 transition">
+            <div className="grid grid-cols-2 gap-4 mt-8">
+              <button className="bg-purple-900/20 hover:bg-purple-900/40 border border-purple-800/30 text-white py-3.5 rounded-xl font-black text-xs uppercase tracking-widest transition-all">
                 My Games
               </button>
-              <button className="bg-red-600 text-white py-3 rounded-xl font-bold hover:bg-red-700 transition">
+              <button className="purple-btn text-white py-3.5 rounded-xl font-black text-xs uppercase tracking-widest">
                 My Downloads
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-2xl font-black">
+        {/* Welcome message */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <p className="text-2xl font-black text-white">
             Welcome back,{" "}
-            <span className="text-red-600">
-              {user?.displayName || "Legend"}
-            </span>
+            <span className="text-purple-400">{user?.displayName || "Legend"}</span>
           </p>
-          <p className="text-lg text-gray-600 mt-2">
-            Keep dominating. The world is watching.
-          </p>
-        </div>
+          <p className="text-gray-500 mt-2">Keep dominating. The world is watching.</p>
+        </motion.div>
       </div>
     </div>
   );

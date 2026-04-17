@@ -1,228 +1,107 @@
 import React from "react";
-import { motion } from "framer-motion"; 
+import { FaDiscord, FaTwitter, FaInstagram, FaYoutube, FaTwitch, FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router";
+import { motion } from "framer-motion";
 
 const Footer = () => {
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1, 
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const columnItemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
- 
-    <footer className="bg-black border-t-2 border-red-600 mt-20">
-      <motion.div
-        className="max-w-7xl mx-auto px-6 py-12 lg:py-16"
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible" 
-        viewport={{ once: true, amount: 0.2 }}
-      >
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 mono">
-         
-          <motion.div
-            className="col-span-2 md:col-span-1"
-            variants={columnItemVariants}
-          >
-         
-            <h2 className="text-4xl font-extrabold fancy text-white">
-              FAKE<span className="text-red-500">GAMERS</span>
-            </h2>
-            <p className="text-gray-400 text-sm mt-4 max-w-xs">
-              The ultimate cross-game universe. Download, upload, and trade
-              digital games & in-game items.
+    <footer className="bg-[#07071a] pt-20 pb-10 border-t border-purple-900/20">
+      <div className="container mx-auto px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+          {/* Brand */}
+          <div className="space-y-6">
+            <Link to="/" className="block">
+              <span className="font-orbitron text-xl font-black tracking-widest uppercase text-white hover:text-purple-300 transition-colors">
+                FAKE<span className="text-purple-400">GAMERS</span>
+              </span>
+            </Link>
+            <p className="font-rajdhani text-gray-500 text-base leading-relaxed max-w-xs">
+              Empowering gamers worldwide with high-performance, low-latency server hosting solutions. Build your community today.
             </p>
-            {/* Replaced cyan-400 with red-500 for copyright */}
-            <p className="text-red-500 text-xs mt-6">
-              © 2025 FAKEGAMERS. All rights reserved.
-            </p>
-          </motion.div>
-
-          {/* Quick Links (Animated) */}
-          <motion.div variants={columnItemVariants}>
-            <h3 className="text-white font-bold mb-4">Platform</h3>
-            <ul className="space-y-3 text-gray-400 text-sm">
-              <motion.li whileHover={{ x: 5 }}>
-                {" "}
-                {/* Framer Motion hover effect */}
-                <a href="/games" className="hover:text-blue-500 transition">
-                  Browse Games
+            <div className="flex gap-3">
+              {[FaDiscord, FaTwitter, FaInstagram, FaYoutube, FaTwitch].map((Icon, i) => (
+                <a key={i} href="#"
+                  className="w-9 h-9 bg-purple-900/20 border border-purple-800/30 hover:bg-purple-600/30 hover:border-purple-600/50 rounded-xl flex items-center justify-center text-gray-500 hover:text-white transition-all duration-300">
+                  <Icon size={15} />
                 </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a
-                  href="/top-downloads"
-                  className="hover:text-blue-500 transition"
-                >
-                  Top Downloads
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/upload" className="hover:text-blue-500 transition">
-                  Upload Game
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/store" className="hover:text-blue-500 transition">
-                  Store
-                </a>
-              </motion.li>
-            </ul>
-          </motion.div>
-
-          {/* Community (Animated) */}
-          <motion.div variants={columnItemVariants}>
-            <h3 className="text-white font-bold mb-4">Community</h3>
-            <ul className="space-y-3 text-gray-400 text-sm">
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/news" className="hover:text-blue-500 transition">
-                  News & Updates
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a
-                  href="/leaderboard"
-                  className="hover:text-blue-500 transition"
-                >
-                  Leaderboard
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/discord" className="hover:text-blue-500 transition">
-                  Discord
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/forums" className="hover:text-blue-500 transition">
-                  Forums
-                </a>
-              </motion.li>
-            </ul>
-          </motion.div>
-
-          {/* Support (Animated) */}
-          <motion.div variants={columnItemVariants}>
-            <h3 className="text-white font-bold mb-4">Support</h3>
-            <ul className="space-y-3 text-gray-400 text-sm">
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/help" className="hover:text-blue-500 transition">
-                  Help Center
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/contact" className="hover:text-blue-500 transition">
-                  Contact Us
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/terms" className="hover:text-blue-500 transition">
-                  Terms of Service
-                </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a href="/privacy" className="hover:text-blue-500 transition">
-                  Privacy Policy
-                </a>
-              </motion.li>
-            </ul>
-          </motion.div>
-
-          {/* Social + Newsletter (Animated) */}
-          <motion.div
-            className="col-span-2 md:col-span-1"
-            variants={columnItemVariants}
-          >
-            <h3 className="text-white font-bold mb-4">Stay Cosmic</h3>
-            <p className="text-gray-400 text-sm mb-4">
-              Get exclusive drops & updates
-            </p>
-
-            <div className="flex gap-4 mb-6 text-white">
-              <motion.a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition"
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "rgba(255, 0, 0, 0.5)",
-                }} 
-                transition={{ duration: 0.2 }}
-              >
-                <span className="text-xl">D</span>
-              </motion.a>
-              <motion.a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition"
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "rgba(0, 0, 255, 0.5)",
-                }} 
-                transition={{ duration: 0.2 }}
-              >
-                <span className="text-xl">T</span>
-              </motion.a>
-              <motion.a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition"
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "rgba(255, 0, 0, 0.5)",
-                }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className="text-xl">I</span>
-              </motion.a>
-              <motion.a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition"
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "rgba(0, 0, 255, 0.5)",
-                }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className="text-xl">Y</span>
-              </motion.a>
-              <motion.a
-                href="#"
-                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center transition"
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "rgba(255, 0, 0, 0.5)",
-                }}
-                transition={{ duration: 0.2 }}
-              >
-                <span className="text-xl">t</span>
-              </motion.a>
+              ))}
             </div>
+          </div>
 
-          </motion.div>
+          {/* Game Server */}
+          <div>
+            <h4 className="font-orbitron text-white font-bold uppercase tracking-widest text-[10px] mb-7">Game Server</h4>
+            <ul className="space-y-3 text-gray-500 font-rajdhani font-semibold text-base">
+              {["Thunder and City", "Mystic Racing Z", "Silent Wrath", "Funk Dungeon", "Galactic Odyssey", "Warfare Legend"].map(l => (
+                <li key={l}>
+                  <a href="#" className="hover:text-purple-400 transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-purple-800 group-hover:bg-purple-400 rounded-full transition-colors" />
+                    {l}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Pages */}
+          <div>
+            <h4 className="font-orbitron text-white font-bold uppercase tracking-widest text-[10px] mb-7">Pages</h4>
+            <ul className="space-y-3 text-gray-500 font-rajdhani font-semibold text-base">
+              {[["Game Server", "#"], ["Knowledgebase", "#"], ["About Us", "#"], ["Affiliates", "#"], ["Locations", "#"], ["News", "/news"]].map(([l, to]) => (
+                <li key={l}>
+                  <Link to={to} className="hover:text-purple-400 transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-purple-800 group-hover:bg-purple-400 rounded-full transition-colors" />
+                    {l}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Newsletter */}
+          <div>
+            <h4 className="font-orbitron text-white font-bold uppercase tracking-widest text-[10px] mb-7">Newsletter</h4>
+            <p className="font-rajdhani text-gray-500 text-base mb-5 leading-relaxed">
+              Your email is safe with us. We don't spam.
+            </p>
+            <div className="flex gap-2 mb-6">
+              <input
+                type="email"
+                placeholder="enter your email"
+                className="input-dark flex-1 text-sm"
+              />
+              <button className="purple-btn text-white p-3 rounded-xl transition-all flex-shrink-0">
+                <FaArrowRight />
+              </button>
+            </div>
+            <div>
+              <p className="font-orbitron text-[10px] font-bold uppercase tracking-widest text-gray-500 mb-3">Follow Us on</p>
+              <div className="flex gap-3">
+                {[FaDiscord, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
+                  <a key={i} href="#"
+                    className="w-8 h-8 bg-purple-900/20 border border-purple-800/30 hover:bg-purple-600/30 rounded-lg flex items-center justify-center text-gray-500 hover:text-white transition-all">
+                    <Icon size={13} />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
-    
-        <motion.div
-          className="mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-xs"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p>
-            FakeGamers is not affiliated with Steam, Epic Games, Valve, or any
-            game publisher. This is an independent community platform.
+        {/* Bottom */}
+        <div className="pt-8 border-t border-purple-900/20 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="font-rajdhani text-gray-600 text-sm font-semibold">
+            Copyright 2025 – FAKEGAMERS by{" "}
+            <span className="text-purple-400">Innovatrix</span>
           </p>
-        </motion.div>
-      </motion.div>
+          <div className="flex gap-6 font-orbitron text-[9px] font-bold uppercase tracking-widest text-gray-600">
+            {["Terms & Conditions", "Privacy Policy", "Status"].map(l => (
+              <a key={l} href="#" className="hover:text-white transition-colors">{l}</a>
+            ))}
+          </div>
+        </div>
+      </div>
     </footer>
   );
 };
