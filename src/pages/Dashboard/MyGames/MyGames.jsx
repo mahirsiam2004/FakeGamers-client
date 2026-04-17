@@ -1,19 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React from "react";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { toast } from "react-hot-toast";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { motion } from "framer-motion";
 import { FaGamepad } from "react-icons/fa";
 
 const MyGames = () => {
+  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
   const { data: games = [], isLoading, refetch } = useQuery({
     queryKey: ["myGames", user?.email],
     queryFn: async () => {
-      const result = await axios.get(`${import.meta.env.VITE_API_URL}/my-games/${user?.email}`);
+      const result = await axiosSecure.get(`/my-games/${user?.email}`);
       return result.data;
     },
     enabled: !!user?.email,

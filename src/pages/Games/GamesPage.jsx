@@ -1,20 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import PremiumCard from "../../components/premiumCard/PremiumCard";
 import { FaSearch, FaFilter } from "react-icons/fa";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const GENRES = ["All", "Action", "Shooter", "Horror", "Racing", "RPG", "Battle Royale", "Indie"];
 
 const GamesPage = () => {
+  const axiosPublic = useAxiosPublic();
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("All");
 
   const { data: games = [], isLoading, error } = useQuery({
     queryKey: ["games"],
     queryFn: async () => {
-      const result = await axios.get(`${import.meta.env.VITE_API_URL}/games`);
+      const result = await axiosPublic.get("/games");
       return result.data;
     },
   });

@@ -3,13 +3,14 @@ import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
-import axios from "axios";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { imageUpload } from "../../utils/upload";
 import { motion } from "framer-motion";
 import { FaGamepad, FaUser, FaEnvelope, FaLock, FaImage } from "react-icons/fa";
 import { Store } from "react-notifications-component";
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm();
@@ -24,7 +25,7 @@ const Register = () => {
       await updateUserProfile(name, imageURL);
 
       const userData = { name, email, image: imageURL };
-      await axios.post(`${import.meta.env.VITE_API_URL}/users`, userData);
+      await axiosPublic.post("/users", userData);
 
       toast.success("Account registered successfully!");
 

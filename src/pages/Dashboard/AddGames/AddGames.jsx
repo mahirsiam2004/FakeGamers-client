@@ -2,19 +2,20 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { imageUpload } from "../../../utils/upload";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { FaUpload, FaGamepad } from "react-icons/fa";
 
 const AddGames = () => {
+  const axiosSecure = useAxiosSecure();
   const { register, handleSubmit, reset, watch } = useForm();
   const coverImage = watch("image");
   const { user } = useAuth();
 
   const { isPending, mutateAsync, reset: mutationReset } = useMutation({
     mutationFn: async (payload) =>
-      await axios.post(`${import.meta.env.VITE_API_URL}/games`, payload),
+      await axiosSecure.post("/games", payload),
     onSuccess: () => {
       toast.success("Game added successfully!");
       mutationReset();
